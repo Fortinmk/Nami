@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MØkG.6.™</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            color: #00ff88;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+        h1 {
+            font-size: 3em;
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            color: #4affcc;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: transparent;
+            border: 2px solid #00ff88;
+            color: #00ff88;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+        .button:hover {
+            background: #00ff88;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="content">
+    <h1>𓂀 𓅓𓄿𓃀𓏏𓇋 MØkG.6.™ 𓋹𓍱𓎛𓁷</h1>
+    <p>𓇋𓄿𓂋𓏏𓍯𓄿𓂻 𓂀 𓏏𓏤𓊪𓅓𓏏𓈖</p>
+    <button class="button">𒀭𒋗𒁀</button>
+</div>
+<script>
+    var canvas = document.getElementById("matrix");
+    var ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    var letters = "アカサタナハマヤラワ0123456789▒▓█".split("");
+    var fontSize = 14;
+    var columns = canvas.width / fontSize;
+    var drops = [];
+    for(var x = 0; x < columns; x++)
+        drops[x] = 1;
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#00ff88";
+        ctx.font = fontSize + "px monospace";
+        for(var i = 0; i < drops.length; i++) {
+            var text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if(drops[i] * fontSize > canvas.height || Math.random() > 0.975)
+                drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    setInterval(draw, 33);
+</script>
+</body>
+</html>
